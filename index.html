@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>For My Gudiya ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Great+Vibes&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ff6a88,#ff99ac,#ffc3a0);
+font-family:'Poppins',sans-serif;
+overflow:hidden;
+position:relative;
+}
+
+.container{
+text-align:center;
+background:rgba(255,255,255,0.18);
+padding:45px;
+border-radius:30px;
+backdrop-filter:blur(18px);
+box-shadow:0 25px 60px rgba(0,0,0,0.3);
+color:white;
+max-width:420px;
+border:1px solid rgba(255,255,255,0.3);
+z-index:2;
+position:relative;
+overflow:hidden;
+}
+
+h1{
+font-family:'Great Vibes',cursive;
+font-size:65px;
+margin-bottom:10px;
+position:relative;
+z-index:2;
+}
+
+#endingHeading{
+display:none;
+font-family:'Anton',sans-serif;
+font-size:36px;
+font-weight:bold;
+margin-top:20px;
+position:relative;
+z-index:2;
+color:#ffdddd;
+text-shadow:0 0 15px #ff6a88,0 0 25px #ff4d6d;
+}
+
+#message{
+font-family:'Poppins',sans-serif;
+font-weight:700;
+font-size:24px;
+min-height:70px;
+line-height:1.7;
+letter-spacing:1px;
+position:relative;
+z-index:2;
+}
+
+button{
+display:none;
+margin-top:25px;
+padding:16px 45px;
+font-size:18px;
+border:none;
+border-radius:50px;
+background:white;
+color:#ff4d6d;
+font-weight:700;
+cursor:pointer;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+transition:0.3s;
+position:relative;
+z-index:2;
+}
+
+button:hover{
+transform:scale(1.08);
+box-shadow:0 12px 30px rgba(255,0,100,0.5);
+}
+
+img{
+margin-top:25px;
+width:280px;
+border-radius:20px;
+display:none;
+box-shadow:0 25px 60px rgba(0,0,0,0.45);
+animation:fade 1s ease;
+margin-left:auto;
+margin-right:auto;
+position:relative;
+z-index:2;
+}
+
+video{
+margin-top:25px;
+width:100%;
+border-radius:20px;
+display:none;
+box-shadow:0 25px 60px rgba(0,0,0,0.45);
+margin-left:auto;
+margin-right:auto;
+position:relative;
+z-index:2;
+}
+
+@keyframes fade{
+from{opacity:0;transform:scale(0.85);}
+to{opacity:1;transform:scale(1);}
+}
+
+.heart{
+position:absolute;
+font-size:22px;
+color:#ff2f6d;
+font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
+text-shadow:0 0 10px #ff2f6d,0 0 15px #ff6a88,0 0 20px #ffc3a0;
+animation:float 6s linear infinite;
+opacity:0.9;
+pointer-events:none;
+z-index:1;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh);opacity:1;}
+100%{transform:translateY(-10vh);opacity:0;}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1 id="title">Hey ❤️</h1>
+
+<div id="message"></div>
+
+<button id="btn" onclick="nextStep()">
+YOU ARE MY GOOD GIRL NA TAP HERE CHUP CHAAP
+</button>
+
+<img id="photo">
+
+<video id="video" controls>
+<source src="love.mp4" type="video/mp4">
+</video>
+
+<h1 id="endingHeading">WE ARE FUCKING SOULMATES <br>EITHER WE END UP TOGETHER OR YOU WILL DIE ANYWAYS </h1>
+
+</div>
+
+<script>
+
+let text="Listen meri babu shona, chammach bhagona, meri gudiya meri miss ladaku meri chatak laal jhandi meri betu.";
+let i=0;
+
+function type(){
+if(i<text.length){
+document.getElementById("message").innerHTML+=text.charAt(i);
+i++;
+setTimeout(type,40);
+}else{
+document.getElementById("btn").style.display="inline-block";
+}
+}
+
+type();
+
+let step=0;
+
+function nextStep(){
+let img=document.getElementById("photo");
+let video=document.getElementById("video");
+let btn=document.getElementById("btn");
+let msg=document.getElementById("message");
+let title=document.getElementById("title");
+let endingHeading=document.getElementById("endingHeading");
+
+if(step===0){
+msg.innerHTML="Loading my favorite person... ❤️";
+
+setTimeout(()=>{
+img.src="her.jpeg";
+img.style.display="block";
+img.after(btn);
+
+title.innerHTML="Mera Maal ❤️";
+msg.innerHTML="ilysmmmm meri gudiya ❤️";
+
+for(let j=0;j<20;j++){
+    createBurstHeart(img);
+}
+
+btn.innerText="Ek baar aur tap kardogi to mar jaaogi kya";
+
+},1500);
+
+step++;
+}
+else if(step===1){
+img.style.display="none";
+btn.style.display="none";
+video.style.display="block";
+video.play();
+
+title.innerHTML="Us core ❤️";
+
+/* Video khatam hone par video hide + ending heading show */
+video.addEventListener("ended",()=>{
+    video.style.display="none";
+    endingHeading.style.display="block";
+});
+
+step++;
+}
+}
+
+/* floating hearts */
+function createHeart(){
+let heart=document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML="❤️"; 
+heart.style.left=Math.random()*100+"vw";
+document.body.appendChild(heart);
+setTimeout(()=>{heart.remove();},6000);
+}
+setInterval(createHeart,400);
+
+/* burst hearts around photo */
+function createBurstHeart(img){
+    let heart=document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML="❤️"; 
+    let rect=img.getBoundingClientRect();
+    heart.style.left=(rect.left + Math.random()*rect.width) + "px";
+    heart.style.top=(rect.top + Math.random()*rect.height) + "px";
+    heart.style.fontSize=(Math.random()*25+15)+"px";
+    document.body.appendChild(heart);
+    setTimeout(()=>{heart.remove();},2000);
+}
+
+</script>
+
+</body>
+</html>
